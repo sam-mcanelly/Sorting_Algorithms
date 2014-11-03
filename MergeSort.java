@@ -8,20 +8,26 @@ public class MergeSort {
     
     private static double[] temp;
     private static double[] listToSort;
+    private static long startTime;
+    private static long endTime;
 
     public static void main(String[] args){
         
     }
     
-    
-    public static double[] sort(double[] arr){
+    public static double[] sort(double[] arr) throws Exception{
+        startTime = System.currentTimeMillis();
         temp = new double[arr.length];
         listToSort = arr;
         sort(arr, 0, arr.length - 1);
         return listToSort;
     }
     
-    private static void sort(double[] arr, int low, int high){
+    private static void sort(double[] arr, int low, int high) throws Exception{
+        endTime = System.currentTimeMillis();
+        if ((endTime - startTime) >= 20000){
+            throw new Exception("Merge Sort: Time has exceeded 20 seconds");
+        }
         if ( high <= low ) return;
         int middle = low + (high - low)/2;
         sort(arr, low, middle);
